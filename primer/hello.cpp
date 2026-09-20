@@ -1,6 +1,15 @@
 #include <iostream>
 
 int main() {
-    std::cout << "Hello primer";
+    int a = 1;
+    int b = 2;
+
+    int c = a;
+
+    a = b;
+    b = c;
+    
+    std::cout << b;
+
     return 0;
 }
