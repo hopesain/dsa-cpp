@@ -182,6 +182,7 @@ void fizzBuzz(int maxValue) {
         }
     }
 
+    number = maxValue;
     while (number >= 1) {
         std::cout << number << std::endl;
         number--;
