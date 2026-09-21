@@ -7,6 +7,11 @@ using std::string;
 string greetUser(string name);
 string discountEligibility(int age, bool hasStudentID);
 
+void displayMenu();
+string selectItemFromMenu(int number);
+
+void fizzBuzz(int maxValue);
+
 int main() {
     // Functions
     string userName;
@@ -33,6 +38,17 @@ int main() {
     }
 
     std::cout << message << std::endl;
+
+    // Switch Statement
+    displayMenu();
+    int selectedItem;
+    std::cout << "Please select an item from the displayed menu: ";
+    std::cin >> selectedItem;
+    message = selectItemFromMenu(selectedItem);
+    std::cout << message << std::endl;
+
+    // Loops
+    fizzBuzz(50);
 
     return EXIT_SUCCESS;
 }
@@ -70,9 +86,92 @@ string discountEligibility(int age, bool hasStudentID) {
 }
 
 // SWITCH STATEMENTS
+// Problem 2: Display a menu to the user:
+//   1. Greet
+//   2. Farewell
+//   3. Repeat name
+//   4. Quit
+//
+// The user enters a number (1-4). Use a switch statement to:
+//   - 1 -> print "Hello!"
+//   - 2 -> print "Goodbye!"
+//   - 3 -> ask the user for their name first, then print "Nice to meet you, <name>!"
+//   - 4 -> print "Exiting..."
+//   - Any other number -> print "Invalid choice"
+//
+// Requirements:
+//   - Use a switch with case, break, and a default case
+//   - For case 3, the name input must be read inside that case block
+//   - Don't use if/else for the menu selection itself
+void displayMenu() {
+    std::cout << "1. Greet" << std::endl;
+    std::cout << "2. Farewell" << std::endl;
+    std::cout << "3. Repeat name" << std::endl;
+    std::cout << "4. Quit" << std::endl;
+}
 
+string selectItemFromMenu(int number) {
+    string message;
+    string name;
+    switch (number) {
+        case 1:
+            message = "Hello!";
+            break;
+        case 2:
+            message = "Goodbye!";
+            break;
+        case 3:
+            std::cout << "Please enter your name: ";
+            std::cin >> name;
+            message = "Nice to meet you, " + name + "!";
+            break;
+        case 4:
+            message = "Exiting...";
+            break;
+        default:
+            message = "Invalid choice";
+            break;
+    }
 
-// Loops
+    return message;
+}
+
+// LOOPS
+// Problem 3: Write a program that asks the user for a positive integer n.
+//
+// Part A (for loop): Print all numbers from 1 to n, each on its own line,
+//   but replace multiples of 3 with the word "Fizz".
+//   Example for n = 5:
+//     1
+//     2
+//     Fizz
+//     4
+//     5
+//
+// Part B (while loop): Then count down from n to 1 on a single line,
+//   separated by spaces, e.g. "5 4 3 2 1".
+//
+// Requirements:
+//   - Part A must use a for loop, Part B must use a while loop
+//   - If n is less than 1, print "Invalid number" and run neither loop
+void fizzBuzz(int maxValue) {
+    if (maxValue < 1) {
+        std::cout << "invalid number" << std::endl;
+        return;
+    }
+    
+    for (int number = 1; number < maxValue; number++) {
+        if (number % 3 == 0 && number % 5 == 0) {
+            std::cout << "FizzBuzz" << std::endl;
+        } else if (number % 3 == 0) {
+            std::cout << "Fizz" << std::endl;
+        } else if (number % 5 == 0) {
+            std::cout << "Buzz" << std::endl;
+        } else {
+            std::cout << number << std::endl;
+        }
+    }
+}
 
 // Arrays
 
