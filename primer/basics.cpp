@@ -48,7 +48,10 @@ int main() {
     std::cout << message << std::endl;
 
     // Loops
-    fizzBuzz(50);
+    int maxValue;
+    std::cout << "Please enter the maximum value: ";
+    std::cin >> maxValue;
+    fizzBuzz(maxValue);
 
     return EXIT_SUCCESS;
 }
@@ -139,14 +142,18 @@ string selectItemFromMenu(int number) {
 // LOOPS
 // Problem 3: Write a program that asks the user for a positive integer n.
 //
-// Part A (for loop): Print all numbers from 1 to n, each on its own line,
-//   but replace multiples of 3 with the word "Fizz".
+// Part A (for loop): FizzBuzz. Print all numbers from 1 to n, each on its
+//   own line, with these rules:
+//   - If the number is a multiple of both 3 AND 5, print "FizzBuzz"
+//   - Otherwise, if it is a multiple of 3, print "Fizz"
+//   - Otherwise, if it is a multiple of 5, print "Buzz"
+//   - Otherwise, print the number itself
 //   Example for n = 5:
 //     1
 //     2
 //     Fizz
 //     4
-//     5
+//     Buzz
 //
 // Part B (while loop): Then count down from n to 1 on a single line,
 //   separated by spaces, e.g. "5 4 3 2 1".
@@ -154,13 +161,16 @@ string selectItemFromMenu(int number) {
 // Requirements:
 //   - Part A must use a for loop, Part B must use a while loop
 //   - If n is less than 1, print "Invalid number" and run neither loop
+
 void fizzBuzz(int maxValue) {
     if (maxValue < 1) {
         std::cout << "invalid number" << std::endl;
         return;
     }
-    
-    for (int number = 1; number < maxValue; number++) {
+
+    int number = 1;
+
+    for (; number <= maxValue; number++) {
         if (number % 3 == 0 && number % 5 == 0) {
             std::cout << "FizzBuzz" << std::endl;
         } else if (number % 3 == 0) {
@@ -170,6 +180,11 @@ void fizzBuzz(int maxValue) {
         } else {
             std::cout << number << std::endl;
         }
+    }
+
+    while (number >= 1) {
+        std::cout << number << std::endl;
+        number--;
     }
 }
 
