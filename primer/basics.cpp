@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
+#include <array>
 
 using std::string;
+using std::array;
 
 // Function Prototypes (Declarations)
 string greetUser(string name);
@@ -11,6 +13,10 @@ void displayMenu();
 string selectItemFromMenu(int number);
 
 void fizzBuzz(int maxValue);
+
+void displayTestScores(array<int, 5> testScores);
+double findArrayAverageScore(array<int, 5> testScores);
+int findArrayLowestScore(array<int, 5> testScores);
 
 int main() {
     // Functions
@@ -52,6 +58,16 @@ int main() {
     std::cout << "Please enter the maximum value: ";
     std::cin >> maxValue;
     fizzBuzz(maxValue);
+
+    // ARRAYS
+    array<int, 5> testScores {67, 88, 45, 15, 75};
+    displayTestScores(testScores);
+    double average = findArrayAverageScore(testScores);
+    std::cout << "Average Score: " << average << std::endl;
+
+    double lowestScore = findArrayLowestScore(testScores);
+    std::cout << "Lowest Score: " << lowestScore << std::endl;
+
 
     return EXIT_SUCCESS;
 }
@@ -189,7 +205,62 @@ void fizzBuzz(int maxValue) {
     }
 }
 
-// Arrays
+// ARRAYS
+// Problem 4: Write a program that asks the user for exactly 5 test scores
+// (integers between 0 and 100), stores them in a fixed-size array, and then
+// prints a report:
+//
+//   - Each score on its own line, numbered: "1. 78"
+//   - The average as "Average: 81.2"
+//   - The highest score as "Highest: 95"
+//   - The lowest score as "Lowest: 60"
+//
+// Requirements:
+//   - Must use a fixed-size array (e.g. int scores[5];) - no vectors
+//   - Must use loops to fill the array and compute the results, no unrolling
+//   - If a score is outside 0-100, print "Invalid score" and ask again for
+//     that same position (the array must still end up with 5 valid scores)
+void displayTestScores(array<int, 5> testScores) {
+    int index = 1;
+    for(const int score:testScores) {
+        std::cout << index << ". " << score << std::endl;
+        index++;
+    }
+}
+
+double findArrayAverageScore(array<int, 5> testScores) {
+    int total = 0;
+
+    for (const int score:testScores) {
+        total += score;
+    }
+
+    return total / testScores.size();
+}
+
+int findArrayLowestScore(array<int, 5> testScores) {
+    int lowestScore = testScores[0];
+
+    for (const int score:testScores) {
+        if (score < lowestScore) {
+            lowestScore = score;
+        }
+    }
+
+    return lowestScore;
+}
+
+int findArrayHighestScore(array<int, 5> testScores) {
+    int highestScore = testScores[0];
+
+    for (const int score:testScores) {
+        if (score > highestScore) {
+            highestScore = score;
+        }
+    }
+
+    return highestScore;
+}
 
 // Vectors
 
