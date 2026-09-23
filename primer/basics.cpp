@@ -40,6 +40,11 @@ void displayWords(map<string, int> words);
 set<int> enterStudentIDs();
 void displayStudentIDs(set<int> studentIDs);
 
+// REFERENCES
+void swapValues(int &a, int &b);
+void printVariables(int a, int b);
+void referencesProblem();
+
 int main() {
     // // Functions
     // string userName;
@@ -106,6 +111,9 @@ int main() {
     // SETS
     set<int> studentIDs = enterStudentIDs();
     displayStudentIDs(studentIDs);
+
+    // REFERENCES
+    referencesProblem();
 
     return EXIT_SUCCESS;
 }
@@ -479,9 +487,123 @@ void displayStudentIDs(set<int> studentIDs) {
 //     swapped (printing must show the new values)
 //   - The function must NOT return the values or use a pair/container to
 //     smuggle them out - the variables in main themselves must change
+void referencesProblem() {
+    int a;
+    std::cout << "Enter the first integer value: ";
+    std::cin >> a;
 
-// Pointers
+    int b;
+    std::cout << "Enter the second integer value: ";
+    std::cin >> b;
 
-// Structures, Union & Enums
+    std::cout << "Before the swap: ";
+    printVariables(a, b);
+
+    std::cout << "Swapping the variables..." << std::endl;
+    swapValues(a, b);
+
+    std::cout << "After the swap: ";
+    printVariables(a, b);
+}
+
+void printVariables(int a, int b) {
+    std::cout << "a = " << a << ", " << "b = " << b << std::endl;
+}
+
+void swapValues(int &a, int &b) {
+    int temp;
+
+    temp = a;
+    a = b;
+    b = temp;
+}
+
+// STRUCTURES
+// Problem 9: Write a program that manages student records using a struct.
+//
+// - Define a struct Student with these fields: name (string), age (int),
+//   and score (int, 0-100)
+// - In main, create a std::vector<Student> and let the user enter students
+//   (ask for name, age, score) until they enter "done" as the name
+// - Then print each student as a formatted record:
+//     Name: Ada, Age: 20, Score: 85
+// - Then print how many students are passing (score >= 50):
+//     "Passing students: 2"
+//
+// Requirements:
+//   - Must define the struct at namespace scope (above main)
+//   - The printing/counting logic must be in functions that take the vector
+//     as a parameter
+//   - No parallel arrays (no separate vector for names, ages, scores) -
+//     one vector of structs
+
+
+// UNIONS
+// Problem 10: Write a program that explores what a union actually is.
+//
+// - Define a union Number that can hold EITHER an int OR a double
+// - In main:
+//   a) Print sizeof(Number), sizeof(int), and sizeof(double) - observe
+//      which one the union's size matches
+//   b) Set the int member to 42 and print it - works fine
+//   c) Then set the double member to 3.14 and print it - also fine
+//   d) NOW print the int member again, after only the double was set.
+//      Observe and write a comment in your code explaining what you got
+//      and why
+//
+// Requirements:
+//   - Must use a union, not a struct
+//   - Part (d) must remain in the code with your explanation as a comment
+//
+// This problem is 50% code, 50% observation. The bug in part (d) is not a
+// mistake - it IS the lesson.
+
+// ENUMS
+// Problem 11: Rewrite the menu program from Problem 2, but this time the
+// menu options must be an enum, not raw magic numbers.
+//
+// - Define an enum class MenuOption with: Greet, Farewell, RepeatName, Quit
+// - Display the same menu as Problem 2 (1-4) and read the user's choice
+// - Cast the int input to MenuOption with static_cast
+// - Use a switch statement ON THE ENUM (not on the int) to select behavior
+//   - Greet -> "Hello!"
+//   - Farewell -> "Goodbye!"
+//   - RepeatName -> ask for name, then "Nice to meet you, <name>!"
+//   - Quit -> "Exiting..."
+// - If the casted value doesn't match any enumerator, print "Invalid choice"
+//
+// Requirements:
+//   - Must be enum class (not plain enum)
+//   - The switch must be on the enum value, with a default case
+//   - Notice in your code how case Greet: reads like English compared to
+//     case 1:
+
+
+// ENUMS
+// Problem 11: Rewrite the menu program from Problem 2, but this time the
+// menu options must be an enum, not raw magic numbers.
+//
+// - Define an enum class MenuOption with: Greet, Farewell, RepeatName, Quit
+// - Display the same menu as Problem 2 (1-4) and read the user's choice
+// - Cast the int input to MenuOption with static_cast
+// - Use a switch statement ON THE ENUM (not on the int) to select behavior
+//   - Greet -> "Hello!"
+//   - Farewell -> "Goodbye!"
+//   - RepeatName -> ask for name, then "Nice to meet you, <name>!"
+//   - Quit -> "Exiting..."
+// - If the casted value doesn't match any enumerator, print "Invalid choice"
+//
+// Requirements:
+//   - Must be enum class (not plain enum)
+//   - The switch must be on the enum value, with a default case
+//   - Notice in your code how case Greet: reads like English compared to
+//     case 1:
+
+
+
+
+
+// POINTERS
+
 
 
