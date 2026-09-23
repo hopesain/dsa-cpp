@@ -14,59 +14,70 @@ string selectItemFromMenu(int number);
 
 void fizzBuzz(int maxValue);
 
+int validateScore(int score);
 void displayTestScores(array<int, 5> testScores);
 double findArrayAverageScore(array<int, 5> testScores);
 int findArrayLowestScore(array<int, 5> testScores);
+int findArrayHighestScore(array<int, 5> testScores);
 
 int main() {
-    // Functions
-    string userName;
-    std::cout << "Please enter your name: ";
-    std::cin >> userName;
-    std::cout << greetUser(userName) << std::endl;
+    // // Functions
+    // string userName;
+    // std::cout << "Please enter your name: ";
+    // std::cin >> userName;
+    // std::cout << greetUser(userName) << std::endl;
 
-    // Logical Operations
-    int age;
-    std::cout << "Please enter your age: ";
-    std::cin >> age;
+    // // Logical Operations
+    // int age;
+    // std::cout << "Please enter your age: ";
+    // std::cin >> age;
 
-    string hasStudentID;
-    std::cout << "Do you have a student ID? ";
-    std::cin >> hasStudentID;
+    // string hasStudentID;
+    // std::cout << "Do you have a student ID? ";
+    // std::cin >> hasStudentID;
 
-    string message;
-    if (hasStudentID == "y") {
-        message = discountEligibility(age, true);
-    } else if (hasStudentID == "n") {
-        message = discountEligibility(age, false);
-    } else {
-        message = "invalid input for student ID";
-    }
+    // string message;
+    // if (hasStudentID == "y") {
+    //     message = discountEligibility(age, true);
+    // } else if (hasStudentID == "n") {
+    //     message = discountEligibility(age, false);
+    // } else {
+    //     message = "invalid input for student ID";
+    // }
 
-    std::cout << message << std::endl;
+    // std::cout << message << std::endl;
 
-    // Switch Statement
-    displayMenu();
-    int selectedItem;
-    std::cout << "Please select an item from the displayed menu: ";
-    std::cin >> selectedItem;
-    message = selectItemFromMenu(selectedItem);
-    std::cout << message << std::endl;
+    // // Switch Statement
+    // displayMenu();
+    // int selectedItem;
+    // std::cout << "Please select an item from the displayed menu: ";
+    // std::cin >> selectedItem;
+    // message = selectItemFromMenu(selectedItem);
+    // std::cout << message << std::endl;
 
-    // Loops
-    int maxValue;
-    std::cout << "Please enter the maximum value: ";
-    std::cin >> maxValue;
-    fizzBuzz(maxValue);
+    // // Loops
+    // int maxValue;
+    // std::cout << "Please enter the maximum value: ";
+    // std::cin >> maxValue;
+    // fizzBuzz(maxValue);
 
     // ARRAYS
     array<int, 5> testScores {67, 88, 45, 15, 75};
+    int score;
+    std::cout << "Enter a score: ";
+    std::cin >> score;
+    testScores[0] = validateScore(score);
+
     displayTestScores(testScores);
+
     double average = findArrayAverageScore(testScores);
     std::cout << "Average Score: " << average << std::endl;
 
     double lowestScore = findArrayLowestScore(testScores);
     std::cout << "Lowest Score: " << lowestScore << std::endl;
+    
+    double highestScore = findArrayHighestScore(testScores);
+    std::cout << "Highest Score: " << highestScore << std::endl;
 
 
     return EXIT_SUCCESS;
@@ -220,6 +231,20 @@ void fizzBuzz(int maxValue) {
 //   - Must use loops to fill the array and compute the results, no unrolling
 //   - If a score is outside 0-100, print "Invalid score" and ask again for
 //     that same position (the array must still end up with 5 valid scores)
+void enterScores(int score) {
+
+}
+
+int validateScore(int score) {
+    while (score < 0 || score > 100) {
+        std::cout << "Score cannot be less than 0 or greater than 100" << std::endl;
+        std::cout << "Re-enter the score: ";
+        std::cin >> score;
+    }
+
+    return score;
+}
+
 void displayTestScores(array<int, 5> testScores) {
     int index = 1;
     for(const int score:testScores) {
@@ -229,7 +254,7 @@ void displayTestScores(array<int, 5> testScores) {
 }
 
 double findArrayAverageScore(array<int, 5> testScores) {
-    int total = 0;
+    double total = 0;
 
     for (const int score:testScores) {
         total += score;
