@@ -36,6 +36,10 @@ void displayItems(vector<string> items);
 map<string, int> enterWords();
 void displayWords(map<string, int> words);
 
+// SETS
+set<int> enterStudentIDs();
+void displayStudentIDs(set<int> studentIDs);
+
 int main() {
     // // Functions
     // string userName;
@@ -98,6 +102,10 @@ int main() {
     // MAPS
     map<string, int> words = enterWords();
     displayWords(words);
+
+    // SETS
+    set<int> studentIDs = enterStudentIDs();
+    displayStudentIDs(studentIDs);
 
     return EXIT_SUCCESS;
 }
@@ -412,7 +420,6 @@ void displayWords(map<string, int> words) {
 
 }
 
-
 // SETS
 // Problem 7: Write a program that builds a list of unique student IDs.
 //
@@ -427,11 +434,51 @@ void displayWords(map<string, int> words) {
 //   - Must NOT check for duplicates manually with loops - that's what the
 //     set is for
 //   - If no IDs were entered (user entered -1 immediately), print "No IDs entered"
-void displayStudentIDs() {
+set<int> enterStudentIDs() {
+    int studentID;
+    set<int> studentIDs;
+
+    std::cout << "Enter student ID: ";
+    std::cin >> studentID;
+
+    while (studentID != -1) {
+        studentIDs.insert(studentID);
+
+        std::cout << "Enter student ID: ";
+        std::cin >> studentID;
+    }
+
+    return studentIDs;
+}
+
+void displayStudentIDs(set<int> studentIDs) {
+    if (studentIDs.size() == 0) {
+        std::cout << "No IDs entered" << std::endl;
+        return;
+    }
+
+    std::cout << "Here is a list of student IDs..." << std::endl;
+    for (int id : studentIDs) {
+        std::cout << id << std::endl;
+    }
 
 }
 
-// References
+// REFERENCES
+// Problem 8: Write a program with a function that swaps the values of two
+// integers.
+//
+// - In main, ask the user for two integers and store them in two variables
+// - Print them: "Before swap: a = 3, b = 7"
+// - Call your swap function with the two variables
+// - Print again: "After swap: a = 7, b = 3"
+//
+// Requirements:
+//   - The swap function must return void
+//   - After the function returns, main's two variables must actually be
+//     swapped (printing must show the new values)
+//   - The function must NOT return the values or use a pair/container to
+//     smuggle them out - the variables in main themselves must change
 
 // Pointers
 
