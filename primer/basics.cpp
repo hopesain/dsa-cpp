@@ -2,10 +2,14 @@
 #include <string>
 #include <array>
 #include <vector>
+#include <map>
+#include <set>
 
 using std::string;
 using std::array;
 using std::vector;
+using std::map;
+using std::set;
 
 // Function Prototypes (Declarations)
 string greetUser(string name);
@@ -27,6 +31,10 @@ int findArrayHighestScore(array<int, 5> testScores);
 // VECTORS
 vector<string> addItems();
 void displayItems(vector<string> items);
+
+// MAPS
+map<string, int> enterWords();
+void displayWords(map<string, int> words);
 
 int main() {
     // // Functions
@@ -87,7 +95,9 @@ int main() {
     vector<string> items = addItems();
     displayItems(items);
 
-
+    // MAPS
+    map<string, int> words = enterWords();
+    displayWords(words);
 
     return EXIT_SUCCESS;
 }
@@ -333,7 +343,7 @@ vector<string> addItems() {
     while (addedItem != "done") {
         items.push_back(addedItem);
         
-        std::cout << "add more items: ";
+        std::cout << "Add More Items: ";
         std::cin >> addedItem;
     }
 
@@ -341,7 +351,7 @@ vector<string> addItems() {
 }
 
 void displayItems(vector<string> items) {
-    if (items.capacity() == 0) {
+    if (items.size() == 0) {
         std::cout << "List is empty" << std::endl;
         return;
     }
@@ -353,14 +363,78 @@ void displayItems(vector<string> items) {
     }
 }
 
-// Maps
+// MAPS
+// Problem 6: Write a program that counts how many times each word appears
+// in a list of words entered by the user.
+//
+// - Repeatedly ask the user to enter a word
+// - When the user enters "done", stop asking
+// - Then print each word followed by its count, alphabetically ordered:
+//     apple: 2
+//     banana: 1
+//     mango: 3
+//
+// Requirements:
+//   - Must use std::map<string, int>
+//   - Must use a loop to print the results
+//   - If no words were entered (user typed "done" immediately), print
+//     "No words entered"
+map<string, int> enterWords() {
+    string word;
+    map<string, int> words;
 
-// Sets 
+    std::cout << "enter a word: ";
+    std::cin >> word;
+
+    while (word != "done") {
+        if (words.count(word) > 0) {
+            words[word] = words[word] + 1;
+        } else {
+            words[word] = 1;
+        }
+
+        std::cout << "enter a word: ";
+        std::cin >> word;
+    }
+
+    return words;
+}
+
+void displayWords(map<string, int> words) {
+    if (words.size() == 0 ) {
+        std::cout << "No words entered" << std::endl;
+        return;
+    }
+    
+    for (const auto& word : words) {
+        std::cout << word.first << ": " << word.second << std::endl;
+    }
+
+}
+
+
+// SETS
+// Problem 7: Write a program that builds a list of unique student IDs.
+//
+// - Repeatedly ask the user to enter a student ID (an integer)
+// - When the user enters -1, stop asking
+// - Then print the unique IDs in ascending order, one per line
+// - If a duplicate ID is entered, do NOT add it again (and the final
+//   output must contain each ID exactly once)
+//
+// Requirements:
+//   - Must use std::set<int>
+//   - Must NOT check for duplicates manually with loops - that's what the
+//     set is for
+//   - If no IDs were entered (user entered -1 immediately), print "No IDs entered"
+void displayStudentIDs() {
+
+}
 
 // References
 
 // Pointers
 
-// Structs
+// Structures, Union & Enums
 
 
