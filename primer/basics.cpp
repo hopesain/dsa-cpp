@@ -15,6 +15,7 @@ string selectItemFromMenu(int number);
 void fizzBuzz(int maxValue);
 
 int validateScore(int score);
+array<int, 5> enterScores();
 void displayTestScores(array<int, 5> testScores);
 double findArrayAverageScore(array<int, 5> testScores);
 int findArrayLowestScore(array<int, 5> testScores);
@@ -55,18 +56,14 @@ int main() {
     // message = selectItemFromMenu(selectedItem);
     // std::cout << message << std::endl;
 
-    // // Loops
+    // // LOOPS
     // int maxValue;
     // std::cout << "Please enter the maximum value: ";
     // std::cin >> maxValue;
     // fizzBuzz(maxValue);
 
     // ARRAYS
-    array<int, 5> testScores {67, 88, 45, 15, 75};
-    int score;
-    std::cout << "Enter a score: ";
-    std::cin >> score;
-    testScores[0] = validateScore(score);
+    array<int, 5> testScores = enterScores();
 
     displayTestScores(testScores);
 
@@ -78,6 +75,8 @@ int main() {
     
     double highestScore = findArrayHighestScore(testScores);
     std::cout << "Highest Score: " << highestScore << std::endl;
+
+    // VECTORS
 
 
     return EXIT_SUCCESS;
@@ -231,8 +230,17 @@ void fizzBuzz(int maxValue) {
 //   - Must use loops to fill the array and compute the results, no unrolling
 //   - If a score is outside 0-100, print "Invalid score" and ask again for
 //     that same position (the array must still end up with 5 valid scores)
-void enterScores(int score) {
+array<int, 5> enterScores() {
+    array<int, 5> testScores;
 
+    for (size_t i = 0; i < testScores.size(); ++i) {
+        int score;
+        std::cout << "Enter score #" << (i + 1) << ": ";
+        std::cin >> score;
+        testScores[i] = validateScore(score);
+    }
+
+    return testScores;
 }
 
 int validateScore(int score) {
