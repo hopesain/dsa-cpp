@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
 #include <array>
+#include <vector>
 
 using std::string;
 using std::array;
+using std::vector;
 
 // Function Prototypes (Declarations)
 string greetUser(string name);
@@ -14,12 +16,17 @@ string selectItemFromMenu(int number);
 
 void fizzBuzz(int maxValue);
 
+// ARRAYS
 int validateScore(int score);
 array<int, 5> enterScores();
 void displayTestScores(array<int, 5> testScores);
 double findArrayAverageScore(array<int, 5> testScores);
 int findArrayLowestScore(array<int, 5> testScores);
 int findArrayHighestScore(array<int, 5> testScores);
+
+// VECTORS
+vector<string> addItems();
+void displayItems(vector<string> items);
 
 int main() {
     // // Functions
@@ -77,6 +84,9 @@ int main() {
     std::cout << "Highest Score: " << highestScore << std::endl;
 
     // VECTORS
+    vector<string> items = addItems();
+    displayItems(items);
+
 
 
     return EXIT_SUCCESS;
@@ -295,12 +305,62 @@ int findArrayHighestScore(array<int, 5> testScores) {
     return highestScore;
 }
 
-// Vectors
+// VECTORS
+// Problem 5: Write a program that lets the user build a shopping list.
+//
+// - Repeatedly ask the user to enter an item name
+// - Add each item to a std::vector<string>
+// - When the user enters "done", stop asking
+// - Then print the list as a numbered list:
+//     1. apples
+//     2. bread
+//     3. milk
+// - Finally, print the total: "Total items: 3"
+//
+// Requirements:
+//   - Must use std::vector<string> and push_back()
+//   - Must use a loop to print the numbered list
+//   - If the user enters "done" as the very first input, print "List is empty"
+//     instead of the numbered list
+//   - No arrays allowed
+vector<string> addItems() {
+    vector<string> items;
+    string addedItem;
+
+    std::cout << "Add Items: ";
+    std::cin >> addedItem;
+
+    while (addedItem != "done") {
+        items.push_back(addedItem);
+        
+        std::cout << "add more items: ";
+        std::cin >> addedItem;
+    }
+
+    return items;
+}
+
+void displayItems(vector<string> items) {
+    if (items.capacity() == 0) {
+        std::cout << "List is empty" << std::endl;
+        return;
+    }
+
+    size_t i = 0;
+    for (const auto& item : items) {
+        i = i + 1;
+        std::cout << i << ". " << item << std::endl;
+    }
+}
 
 // Maps
 
 // Sets 
 
+// References
+
 // Pointers
+
+// Structs
 
 
