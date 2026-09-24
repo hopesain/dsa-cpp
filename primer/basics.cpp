@@ -45,6 +45,15 @@ void swapValues(int &a, int &b);
 void printVariables(int a, int b);
 void referencesProblem();
 
+// STRUCTURES
+struct Student {
+    string name;
+    int age;
+    int score;
+};
+void addStudents(vector<Student>& students);
+void displayStudents(vector<Student>& students);
+
 int main() {
     // // Functions
     // string userName;
@@ -114,6 +123,11 @@ int main() {
 
     // REFERENCES
     referencesProblem();
+
+    // STRUCTURES
+    vector<Student> students;
+    addStudents(students);
+    displayStudents(students);
 
     return EXIT_SUCCESS;
 }
@@ -536,6 +550,48 @@ void swapValues(int &a, int &b) {
 //     as a parameter
 //   - No parallel arrays (no separate vector for names, ages, scores) -
 //     one vector of structs
+
+void addStudents(vector<Student>& students) {
+    string studentName;
+    std::cout << "Enter student name: ";
+    std::cin >> studentName;
+
+    int age;
+    std::cout << "Enter student age: ";
+    std::cin >> age;
+
+    int score;
+    std::cout << "Enter student grade score: ";
+    std::cin >> score;
+
+    while (studentName != "done") {
+        students.push_back({studentName, age, score});
+
+        std::cout << "Enter student name: ";
+        std::cin >> studentName;
+
+        std::cout << "Enter student age: ";
+        std::cin >> age;
+
+        std::cout << "Enter student grade score: ";
+        std::cin >> score;
+    }
+
+}
+
+void displayStudents(vector<Student>& students) {
+    if (students.size() == 0) {
+        std::cout << "No students recorded" << std::endl;
+        return;
+    }
+
+    for (const auto& student : students) {
+        // Name: Ada, Age: 20, Score: 85
+        std::cout << "Name: " << student.name << ", Age: " << student.age << ", Score: " << student.score << std::endl;
+    }
+
+}
+
 
 
 // UNIONS
