@@ -28,3 +28,4 @@ For other operating systems, kindly do your own research.
 
 ## Useful Articles & Links
 - https://www.codewithharry.com/tutorial/overview/cplusplus-overview 
+- https://coddy.tech/docs/cpp/dynamic-memory

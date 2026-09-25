@@ -63,6 +63,9 @@ enum class MenuOption {
 };
 string selectedMenuItem();
 
+// POINTERS
+void pointerAssignment();
+
 int main() {
     // // Functions
     // string userName;
@@ -142,6 +145,10 @@ int main() {
     displayMenu();
     string enumMessage = selectedMenuItem();
     std::cout << enumMessage << std::endl;
+
+    // POINTERS
+    pointerAssignment();
+    
 
     return EXIT_SUCCESS;
 }
@@ -593,7 +600,7 @@ void addStudents(vector<Student>& students) {
 
 }
 
-void displayStudents(vector<Student>& students) {
+void displayStudents(const vector<Student>& students) {
     if (students.size() == 0) {
         std::cout << "No students recorded" << std::endl;
         return;
@@ -667,4 +674,51 @@ string selectedMenuItem() {
 }
 
 // POINTERS
+// Problem 12: Write a program that asks the user how many test scores they
+// want to enter, then stores them in a dynamically allocated array whose
+// size is only known at RUNTIME (unlike std::array from Problem 4).
+//
+// - Ask the user for n (a positive integer)
+// - Allocate an int array of size n on the heap using new[]
+// - Ask the user to enter the n scores and store them in the array
+// - Print the scores back, numbered, each on its own line
+// - Print the average as "Average: 82.4"
+// - Free the memory with delete[] before the program ends
+//
+// Requirements:
+//   - Must use new[] and delete[] - no std::vector, no std::array
+//   - Must use a plain int* pointer to walk the array
+//   - At least one element access must use pointer arithmetic:
+//     *(scores + i) instead of scores[i]
+//   - If n is less than 1, print "Invalid number" and allocate nothing
 
+void pointerAssignment() {
+    int size = 0;
+
+    std::cout << "How many test scores do you want to enter: ";
+    std::cin >> size;
+
+    while (size < 0) {
+        std::cout << "The size of test scores cannot be less than 0." << std::endl;
+        std::cout << "Please re-enter the size: ";
+        std::cin >> size;
+    }
+
+    int *testScores = new int[size];
+    double total = 0;
+
+    for (int i = 0; i < size; ++i) {
+        std::cout << "Enter test score #" << i + 1 << ": ";
+        std::cin >> testScores[i];
+        total = total + testScores[i];
+    }
+
+    for (int i = 0; i < size; ++i) {
+        std::cout << "#" << i + 1 << ". " << *(testScores + i) << std::endl;
+    }
+
+    std::cout << "Total Scores: " << total << std::endl;
+    std::cout << "Average Score: " << total / size << std::endl;
+
+    delete[] testScores;
+}
