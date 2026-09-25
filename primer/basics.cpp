@@ -54,6 +54,15 @@ struct Student {
 void addStudents(vector<Student>& students);
 void displayStudents(vector<Student>& students);
 
+// ENUMS
+enum class MenuOption {
+    Greet = 1,
+    Farewell,
+    RepeatName,
+    Quit
+};
+string selectedMenuItem();
+
 int main() {
     // // Functions
     // string userName;
@@ -95,39 +104,44 @@ int main() {
     // std::cin >> maxValue;
     // fizzBuzz(maxValue);
 
-    // ARRAYS
-    array<int, 5> testScores = enterScores();
+    // // ARRAYS
+    // array<int, 5> testScores = enterScores();
 
-    displayTestScores(testScores);
+    // displayTestScores(testScores);
 
-    double average = findArrayAverageScore(testScores);
-    std::cout << "Average Score: " << average << std::endl;
+    // double average = findArrayAverageScore(testScores);
+    // std::cout << "Average Score: " << average << std::endl;
 
-    double lowestScore = findArrayLowestScore(testScores);
-    std::cout << "Lowest Score: " << lowestScore << std::endl;
+    // double lowestScore = findArrayLowestScore(testScores);
+    // std::cout << "Lowest Score: " << lowestScore << std::endl;
     
-    double highestScore = findArrayHighestScore(testScores);
-    std::cout << "Highest Score: " << highestScore << std::endl;
+    // double highestScore = findArrayHighestScore(testScores);
+    // std::cout << "Highest Score: " << highestScore << std::endl;
 
-    // VECTORS
-    vector<string> items = addItems();
-    displayItems(items);
+    // // VECTORS
+    // vector<string> items = addItems();
+    // displayItems(items);
 
-    // MAPS
-    map<string, int> words = enterWords();
-    displayWords(words);
+    // // MAPS
+    // map<string, int> words = enterWords();
+    // displayWords(words);
 
-    // SETS
-    set<int> studentIDs = enterStudentIDs();
-    displayStudentIDs(studentIDs);
+    // // SETS
+    // set<int> studentIDs = enterStudentIDs();
+    // displayStudentIDs(studentIDs);
 
-    // REFERENCES
-    referencesProblem();
+    // // REFERENCES
+    // referencesProblem();
 
-    // STRUCTURES
-    vector<Student> students;
-    addStudents(students);
-    displayStudents(students);
+    // // STRUCTURES
+    // vector<Student> students;
+    // addStudents(students);
+    // displayStudents(students);
+
+    // ENUMS
+    displayMenu();
+    string enumMessage = selectedMenuItem();
+    std::cout << enumMessage << std::endl;
 
     return EXIT_SUCCESS;
 }
@@ -592,28 +606,6 @@ void displayStudents(vector<Student>& students) {
 
 }
 
-
-
-// UNIONS
-// Problem 10: Write a program that explores what a union actually is.
-//
-// - Define a union Number that can hold EITHER an int OR a double
-// - In main:
-//   a) Print sizeof(Number), sizeof(int), and sizeof(double) - observe
-//      which one the union's size matches
-//   b) Set the int member to 42 and print it - works fine
-//   c) Then set the double member to 3.14 and print it - also fine
-//   d) NOW print the int member again, after only the double was set.
-//      Observe and write a comment in your code explaining what you got
-//      and why
-//
-// Requirements:
-//   - Must use a union, not a struct
-//   - Part (d) must remain in the code with your explanation as a comment
-//
-// This problem is 50% code, 50% observation. The bug in part (d) is not a
-// mistake - it IS the lesson.
-
 // ENUMS
 // Problem 11: Rewrite the menu program from Problem 2, but this time the
 // menu options must be an enum, not raw magic numbers.
@@ -634,32 +626,45 @@ void displayStudents(vector<Student>& students) {
 //   - Notice in your code how case Greet: reads like English compared to
 //     case 1:
 
+string selectedMenuItem() {
+    int selectedItem;
+    std::cout << "Please enter a number of the item you have selected: ";
+    std::cin >> selectedItem;
 
-// ENUMS
-// Problem 11: Rewrite the menu program from Problem 2, but this time the
-// menu options must be an enum, not raw magic numbers.
-//
-// - Define an enum class MenuOption with: Greet, Farewell, RepeatName, Quit
-// - Display the same menu as Problem 2 (1-4) and read the user's choice
-// - Cast the int input to MenuOption with static_cast
-// - Use a switch statement ON THE ENUM (not on the int) to select behavior
-//   - Greet -> "Hello!"
-//   - Farewell -> "Goodbye!"
-//   - RepeatName -> ask for name, then "Nice to meet you, <name>!"
-//   - Quit -> "Exiting..."
-// - If the casted value doesn't match any enumerator, print "Invalid choice"
-//
-// Requirements:
-//   - Must be enum class (not plain enum)
-//   - The switch must be on the enum value, with a default case
-//   - Notice in your code how case Greet: reads like English compared to
-//     case 1:
+    while (selectedItem < 0 || selectedItem > 4) {
+        std::cout << "Selected item cannot be less than 0 or greater than 4" << std::endl;
 
+        std::cout << "Please re-enter the selected item: ";
+        std::cin >> selectedItem;
+    }
 
+    MenuOption selectedMenuOption = static_cast<MenuOption>(selectedItem);
 
+    string message;
+    string username;
 
+    switch(selectedMenuOption) {
+        case MenuOption::Greet:
+            message = "Hello!";
+            break;
+        case MenuOption::Farewell:
+            message = "Goodbye...";
+            break;
+        case MenuOption::RepeatName:
+            std::cout << "Please enter your name: ";
+            std::cin >> username;
+            message = "Nice to meet you, " + username + "!";
+            break;
+        case MenuOption::Quit:
+            message = "Exiting....";
+            break;
+        default:
+            message = "Invalid Choice";
+            break;
+    }
+
+    return message;
+}
 
 // POINTERS
-
-
 
