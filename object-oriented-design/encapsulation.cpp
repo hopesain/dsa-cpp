@@ -30,7 +30,6 @@
 
 using std::string;
 
-
 class Student{
     private:
     string name;
